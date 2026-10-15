@@ -3,12 +3,15 @@ import mysql.connector
 import pandas as pd
 
 # ---------------- DB CONNECTION ----------------
+
 def get_db():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="root",
-        database="employee_management"
+        host=st.secrets["mysql"]["host"],
+        port=int(st.secrets["mysql"].get("port", 3306)),
+        user=st.secrets["mysql"]["user"],
+        password=st.secrets["mysql"]["password"],
+        database=st.secrets["mysql"]["database"],
+        connection_timeout=10
     )
 
 # ---------------- PAGE CONFIG ----------------
